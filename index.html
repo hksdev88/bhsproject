@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bloombreed Schools | Student Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div>
+          <strong>Bloombreed</strong>
+          <small>Schools</small>
+        </div>
+      </div>
+
+      <div class="school-year">2026 / 2027 <span>⌄</span></div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <p class="nav-label">Workspace</p>
+        <a class="nav-item active" href="#overview" data-page="dashboard"><span class="nav-icon">⌂</span>Overview</a>
+        <a class="nav-item" href="#timetable" data-page="timetable" id="timetableNav"><span class="nav-icon">▦</span>My timetable</a>
+        <a class="nav-item" href="#assignments" data-page="assignments"><span class="nav-icon">✓</span>Assignments <b class="nav-count">3</b></a>
+        <a class="nav-item" href="#results" data-page="results"><span class="nav-icon">◒</span>Results</a>
+        <a class="nav-item" href="#resources" data-page="resources"><span class="nav-icon">▤</span>Resources</a>
+        <p class="nav-label second-label">Community</p>
+        <a class="nav-item" href="#messages" data-page="messages"><span class="nav-icon">◌</span>Messages <b class="nav-count yellow">2</b></a>
+        <a class="nav-item" href="#events" data-page="events"><span class="nav-icon">◇</span>School events</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <a class="nav-item" href="#settings" data-page="settings"><span class="nav-icon">⚙</span>Settings</a>
+        <div class="help-card">
+          <div class="help-icon">?</div>
+          <div><strong>Need some help?</strong><small>Visit the support desk</small></div>
+          <span>→</span>
+        </div>
+        <div class="profile-mini">
+          <div class="avatar avatar-red">AO</div>
+          <div><strong>Allen Ofum</strong><small>Year 9 · Student</small></div>
+          <span class="more">•••</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="overview">
+      <header class="topbar">
+        <button class="menu-button" id="menuButton" aria-label="Open navigation">☰</button>
+        <div class="breadcrumb"><span>Student portal</span><b>/</b> Overview</div>
+        <div class="top-actions">
+          <button class="icon-button" aria-label="Search">⌕</button>
+          <button class="icon-button notification" aria-label="Notifications"><span></span>♧</button>
+          <div class="top-profile"><div class="avatar avatar-blue">AO</div><strong>Allen Ofum</strong><span>⌄</span></div>
+        </div>
+      </header>
+
+      <div class="content-wrap dashboard-page" id="dashboardPage">
+        <section class="welcome-row">
+          <div>
+            <p class="eyebrow">Thursday, 12 September 2026</p>
+            <h1>Good morning, Allen<span>.</span></h1>
+            <p class="intro">Here’s what’s happening across your school day.</p>
+          </div>
+          <button class="primary-button" id="scheduleButton"><span>＋</span> Add to schedule</button>
+        </section>
+
+        <section class="hero-card">
+          <div class="hero-copy">
+            <div class="hero-kicker"><span class="pulse-dot"></span> Thursday focus</div>
+            <h2>Small steps.<br><em>Big progress.</em></h2>
+            <p>Keep your momentum going, Allen. You have 3 tasks to complete this week.</p>
+            <button class="light-button" id="viewTasks">View my tasks <span>↗</span></button>
+          </div>
+          <div class="hero-graphic" aria-hidden="true">
+            <div class="sun"></div><div class="graphic-line line-one"></div><div class="graphic-line line-two"></div>
+            <div class="graphic-card card-one">+ 12%</div><div class="graphic-card card-two">✓</div>
+            <div class="graphic-book"><div></div><div></div><div></div></div>
+          </div>
+          <div class="hero-corner">09<br><small>SEP</small></div>
+        </section>
+
+        <section class="stats-grid" aria-label="Academic summary">
+          <article class="stat-card"><div class="stat-top"><span class="stat-icon red-icon">▣</span><span class="trend up">↑ 8%</span></div><strong>86%</strong><p>Overall attendance</p><div class="mini-progress"><span style="width: 86%"></span></div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-icon blue-icon">✦</span><span class="trend up">↑ 4.2</span></div><strong>78.4</strong><p>Average score</p><div class="mini-progress blue-progress"><span style="width: 78%"></span></div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-icon yellow-icon">✓</span><span class="trend neutral">This week</span></div><strong>3</strong><p>Pending assignments</p><div class="assignment-dots"><i></i><i></i><i></i><i></i><i></i></div></article>
+        </section>
+
+        <div class="dashboard-grid">
+          <section class="panel schedule-panel" id="timetable">
+            <div class="panel-heading"><div><p class="panel-eyebrow">Your day</p><h3>Today’s timetable</h3></div><button class="text-button" id="fullTimetableButton">Full timetable <span>→</span></button></div>
+            <div class="timeline">
+              <div class="timeline-item done"><time>08:00 <small>AM</small></time><div class="time-line"><span></span></div><div class="lesson"><div class="lesson-head"><strong>Mathematics</strong><span class="tag green-tag">Completed</span></div><p>Mr. Boma</p></div></div>
+              <div class="timeline-item current"><time>10:15 <small>AM</small></time><div class="time-line"><span></span></div><div class="lesson"><div class="lesson-head"><strong>English Language</strong><span class="tag red-tag">In progress</span></div><p>Mrs. Joshua</p></div></div>
+              <div class="timeline-item"><time>12:00 <small>PM</small></time><div class="time-line"><span></span></div><div class="lesson"><div class="lesson-head"><strong>Basic Chemistry</strong><span class="tag gray-tag">Upcoming</span></div><p>Mr. Michael</p></div></div>
+              <div class="timeline-item"><time>01:30 <small>PM</small></time><div class="time-line"><span></span></div><div class="lesson"><div class="lesson-head"><strong>Literature</strong><span class="tag gray-tag">Upcoming</span></div><p>Mr. Goodness</p></div></div>
+            </div>
+          </section>
+
+          <section class="panel assignments-panel" id="assignments">
+            <div class="panel-heading"><div><p class="panel-eyebrow">Keep moving</p><h3>Assignments</h3></div><button class="round-button" aria-label="Add assignment">＋</button></div>
+            <div class="assignment-list">
+              <article class="assignment"><div class="subject-badge math-badge">M</div><div class="assignment-copy"><strong>Quadratic equations</strong><p>Mathematics · Due tomorrow</p></div><span class="priority-dot urgent"></span></article>
+              <article class="assignment"><div class="subject-badge english-badge">A</div><div class="assignment-copy"><strong>My favourite author</strong><p>English · Due 16 Sep</p></div><span class="priority-dot soon"></span></article>
+              <article class="assignment"><div class="subject-badge science-badge">S</div><div class="assignment-copy"><strong>Plant cell diagram</strong><p>Basic Science · Due 18 Sep</p></div><span class="priority-dot later"></span></article>
+            </div>
+            <button class="outline-button" id="assignmentButton">See all assignments <span>→</span></button>
+          </section>
+        </div>
+
+        <section class="lower-grid">
+          <article class="notice-strip"><div class="notice-mark">!</div><div><p class="panel-eyebrow">School notice</p><strong>Inter-house sports day is coming up</strong><p>Friday, 20 September · School field</p></div><button class="text-button">Details <span>↗</span></button></article>
+          <article class="quote-card"><span class="quote-mark">“</span><p>Success is the sum of small efforts, repeated day in and day out.</p><small>— Robert Collier</small></article>
+        </section>
+        <footer>© 2026 Bloombreed Schools <span>·</span> Student portal</footer>
+      </div>
+
+      <section class="content-wrap page-view timetable-page" id="fullTimetablePage" hidden>
+        <div class="page-heading">
+          <div>
+            <button class="back-button" id="backToDashboard"><span>←</span> Back to overview</button>
+            <p class="eyebrow">Academic schedule</p>
+            <h1>My timetable<span>.</span></h1>
+            <p class="intro">Your complete class schedule for the week of 9–13 September 2026.</p>
+          </div>
+          <button class="primary-button" id="downloadTimetable"><span>↓</span> Download timetable</button>
+        </div>
+
+        <div class="timetable-toolbar">
+          <div class="week-switcher">
+            <button class="round-button" aria-label="Previous week">←</button>
+            <strong>September 9–13, 2026</strong>
+            <button class="round-button" aria-label="Next week">→</button>
+          </div>
+          <span class="current-week">Current week</span>
+        </div>
+
+        <div class="weekly-schedule" aria-label="Weekly timetable">
+          <div class="schedule-corner">Time</div>
+          <div class="day-heading"><strong>MON</strong><span>09</span></div>
+          <div class="day-heading"><strong>TUE</strong><span>10</span></div>
+          <div class="day-heading"><strong>WED</strong><span>11</span></div>
+          <div class="day-heading active-day"><strong>THU</strong><span>12</span></div>
+          <div class="day-heading"><strong>FRI</strong><span>13</span></div>
+
+          <div class="schedule-time">08:00 <small>AM</small></div>
+          <div class="class-block math-class"><strong>Mathematics</strong><small>Mr. Boma · Room 3B</small></div>
+          <div class="class-block science-class"><strong>Basic Chemistry</strong><small>Mr. Michael · Lab 1</small></div>
+          <div class="class-block english-class"><strong>English Language</strong><small>Mrs. Joshua · Room 2A</small></div>
+          <div class="class-block math-class"><strong>Mathematics</strong><small>Mr. Boma · Room 3B</small></div>
+          <div class="class-block literature-class"><strong>Literature</strong><small>Mr. Goodness · Room 1C</small></div>
+
+          <div class="schedule-time">10:15 <small>AM</small></div>
+          <div class="class-block english-class"><strong>English Language</strong><small>Mrs. Joshua · Room 2A</small></div>
+          <div class="class-block literature-class"><strong>Literature</strong><small>Mr. Goodness · Room 1C</small></div>
+          <div class="class-block math-class"><strong>Mathematics</strong><small>Mr. Boma · Room 3B</small></div>
+          <div class="class-block current-class"><strong>English Language</strong><small>Mrs. Joshua · Room 2A</small><span>Now</span></div>
+          <div class="class-block science-class"><strong>Basic Chemistry</strong><small>Mr. Michael · Lab 1</small></div>
+
+          <div class="schedule-time">12:00 <small>PM</small></div>
+          <div class="class-block science-class"><strong>Basic Chemistry</strong><small>Mr. Michael · Lab 1</small></div>
+          <div class="class-block math-class"><strong>Mathematics</strong><small>Mr. Boma · Room 3B</small></div>
+          <div class="class-block literature-class"><strong>Literature</strong><small>Mr. Goodness · Room 1C</small></div>
+          <div class="class-block science-class"><strong>Basic Chemistry</strong><small>Mr. Michael · Lab 1</small></div>
+          <div class="class-block english-class"><strong>English Language</strong><small>Mrs. Joshua · Room 2A</small></div>
+
+          <div class="schedule-time">01:30 <small>PM</small></div>
+          <div class="class-block literature-class"><strong>Literature</strong><small>Mr. Goodness · Room 1C</small></div>
+          <div class="class-block english-class"><strong>English Language</strong><small>Mrs. Joshua · Room 2A</small></div>
+          <div class="class-block science-class"><strong>Basic Chemistry</strong><small>Mr. Michael · Lab 1</small></div>
+          <div class="class-block literature-class"><strong>Literature</strong><small>Mr. Goodness · Room 1C</small></div>
+          <div class="class-block math-class"><strong>Mathematics</strong><small>Mr. Boma · Room 3B</small></div>
+        </div>
+
+        <div class="timetable-note"><span>i</span><div><strong>Remember your lab coat</strong><p>Basic Chemistry takes place in Laboratory 1 on Wednesday and Thursday.</p></div></div>
+      </section>
+
+      <section class="content-wrap app-page" id="assignmentsPage" hidden>
+        <div class="page-heading"><div><p class="eyebrow">Keep moving</p><h1>Assignments<span>.</span></h1><p class="intro">Stay on top of your classwork and upcoming deadlines.</p></div><button class="primary-button" data-toast="New assignment added"><span>＋</span> Add assignment</button></div>
+        <div class="page-summary"><div><strong>3</strong><span>Pending</span></div><div><strong>7</strong><span>Completed this term</span></div><div><strong>92%</strong><span>On-time rate</span></div></div>
+        <div class="assignment-page-list">
+          <article class="page-list-item"><div class="subject-badge math-badge">M</div><div><strong>Quadratic equations</strong><p>Mathematics · Mr. Boma</p></div><span class="due urgent-text">Due tomorrow</span><button class="small-action" data-toast="Assignment marked as complete">Mark complete</button></article>
+          <article class="page-list-item"><div class="subject-badge english-badge">A</div><div><strong>My favourite author</strong><p>English Language · Mrs. Joshua</p></div><span class="due soon-text">Due 16 Sep</span><button class="small-action" data-toast="Assignment opened">Open</button></article>
+          <article class="page-list-item"><div class="subject-badge science-badge">S</div><div><strong>Plant cell diagram</strong><p>Basic Chemistry · Mr. Michael</p></div><span class="due later-text">Due 18 Sep</span><button class="small-action" data-toast="Assignment opened">Open</button></article>
+        </div>
+      </section>
+
+      <section class="content-wrap app-page" id="resultsPage" hidden>
+        <div class="page-heading"><div><p class="eyebrow">Academic progress</p><h1>My results<span>.</span></h1><p class="intro">Track your performance across subjects and terms.</p></div><button class="primary-button" data-toast="Results report downloaded"><span>↓</span> Download report</button></div>
+        <div class="results-highlight"><div><p class="panel-eyebrow">Current average</p><strong>78.4<span>/100</span></strong><p>Up 4.2 points from last term</p></div><div class="result-ring"><span>78%</span></div></div>
+        <div class="results-table"><div class="table-header"><span>Subject</span><span>Continuous assessment</span><span>Exam</span><span>Total</span><span>Grade</span></div><div class="result-row"><strong>Mathematics</strong><span>24 / 30</span><span>58 / 70</span><b>82</b><em class="grade-blue">A</em></div><div class="result-row"><strong>English Language</strong><span>22 / 30</span><span>51 / 70</span><b>73</b><em class="grade-green">B</em></div><div class="result-row"><strong>Basic Chemistry</strong><span>25 / 30</span><span>49 / 70</span><b>74</b><em class="grade-green">B</em></div><div class="result-row"><strong>Literature</strong><span>23 / 30</span><span>55 / 70</span><b>78</b><em class="grade-green">B</em></div></div>
+      </section>
+
+      <section class="content-wrap app-page" id="resourcesPage" hidden>
+        <div class="page-heading"><div><p class="eyebrow">Your learning space</p><h1>Resources<span>.</span></h1><p class="intro">Useful notes, guides, and materials from your teachers.</p></div><button class="primary-button" data-toast="Resource upload opened"><span>↑</span> Upload resource</button></div>
+        <div class="resource-grid"><article class="resource-card resource-red"><span class="resource-icon">▤</span><div><strong>Mathematics notes</strong><p>12 files · Updated today</p></div><button aria-label="Open Mathematics notes">↗</button></article><article class="resource-card resource-blue"><span class="resource-icon">A</span><div><strong>English reading list</strong><p>8 files · Updated yesterday</p></div><button aria-label="Open English reading list">↗</button></article><article class="resource-card resource-yellow"><span class="resource-icon">S</span><div><strong>Chemistry lab guides</strong><p>6 files · Updated 3 Sep</p></div><button aria-label="Open Chemistry lab guides">↗</button></article><article class="resource-card resource-green"><span class="resource-icon">◇</span><div><strong>Year 9 study skills</strong><p>4 files · Updated 29 Aug</p></div><button aria-label="Open Year 9 study skills">↗</button></article></div>
+      </section>
+
+      <section class="content-wrap app-page" id="messagesPage" hidden>
+        <div class="page-heading"><div><p class="eyebrow">Stay connected</p><h1>Messages<span>.</span></h1><p class="intro">Updates and conversations from your school community.</p></div><button class="primary-button" data-toast="New message window opened"><span>＋</span> New message</button></div>
+        <div class="message-layout"><div class="message-list"><button class="message-item unread" data-message="english"><span class="avatar avatar-red">MJ</span><span><strong>Mrs. Joshua</strong><small>English Language · Please bring your...</small></span><time>10:42 AM</time></button><button class="message-item unread" data-message="sports"><span class="avatar avatar-blue">SC</span><span><strong>School office</strong><small>Reminder: inter-house sports day...</small></span><time>Yesterday</time></button><button class="message-item" data-message="maths"><span class="avatar avatar-gold">MB</span><span><strong>Mr. Boma</strong><small>Your mathematics feedback is ready.</small></span><time>08 Sep</time></button></div><article class="message-empty" id="messageDetail"><span class="message-paper">◌</span><strong>Select a message</strong><p>Choose a conversation to read the full message here.</p></article></div>
+      </section>
+
+      <section class="content-wrap app-page" id="eventsPage" hidden>
+        <div class="page-heading"><div><p class="eyebrow">What’s happening</p><h1>School events<span>.</span></h1><p class="intro">Important dates and activities at Bloombreed Schools.</p></div><button class="primary-button" data-toast="Event added to your schedule"><span>＋</span> Add to schedule</button></div>
+        <div class="event-list"><article class="event-item"><time><strong>20</strong><span>SEP</span></time><div><span class="event-label red-label">School-wide</span><h3>Inter-house sports day</h3><p>Friday · 8:00 AM · School field</p></div><button class="small-action" data-toast="Event added to your schedule">Add</button></article><article class="event-item"><time><strong>25</strong><span>SEP</span></time><div><span class="event-label blue-label">Academic</span><h3>Year 9 science fair</h3><p>Wednesday · 10:15 AM · Main hall</p></div><button class="small-action" data-toast="Event added to your schedule">Add</button></article><article class="event-item"><time><strong>04</strong><span>OCT</span></time><div><span class="event-label yellow-label">Community</span><h3>Parents and teachers forum</h3><p>Friday · 2:00 PM · Assembly hall</p></div><button class="small-action" data-toast="Event added to your schedule">Add</button></article></div>
+      </section>
+
+      <section class="content-wrap app-page" id="settingsPage" hidden>
+        <div class="page-heading"><div><p class="eyebrow">Make it yours</p><h1>Settings<span>.</span></h1><p class="intro">Manage your profile and student portal preferences.</p></div></div>
+        <div class="settings-layout"><div class="settings-card"><p class="panel-eyebrow">Profile</p><div class="settings-profile"><div class="avatar avatar-red">AO</div><div><strong>Allen Ofum</strong><p>Year 9 · Student ID: BS-0924</p></div><button class="small-action" data-toast="Profile editing opened">Edit profile</button></div></div><div class="settings-card"><p class="panel-eyebrow">Preferences</p><label class="setting-row"><span><strong>Email notifications</strong><small>Receive updates about assignments and school events.</small></span><input type="checkbox" checked><i></i></label><label class="setting-row"><span><strong>Weekly summary</strong><small>Get a Monday overview of your school week.</small></span><input type="checkbox" checked><i></i></label><label class="setting-row"><span><strong>Show completed work</strong><small>Keep completed assignments visible in your lists.</small></span><input type="checkbox"><i></i></label></div></div>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status">Added to your schedule</div>
+  <script src="script.js"></script>
+</body>
+</html>
