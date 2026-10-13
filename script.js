@@ -1,50 +1,40 @@
-const menuButton = document.getElementById('menuButton');
 const sidebar = document.getElementById('sidebar');
 const toast = document.getElementById('toast');
-const dashboardPage = document.getElementById('dashboardPage');
-const pageViews = {
-  timetable: document.getElementById('fullTimetablePage'),
-  assignments: document.getElementById('assignmentsPage'),
-  results: document.getElementById('resultsPage'),
-  resources: document.getElementById('resourcesPage'),
-  messages: document.getElementById('messagesPage'),
-  events: document.getElementById('eventsPage'),
-  settings: document.getElementById('settingsPage'),
-};
+const currentPage = document.body.dataset.page;
 
-function showPage(pageName, event) {
-  event?.preventDefault();
-
-  dashboardPage.hidden = pageName !== 'dashboard';
-  Object.entries(pageViews).forEach(([name, page]) => {
-    page.hidden = name !== pageName;
-  });
-
-  document.querySelectorAll('.nav-item[data-page]').forEach((item) => {
-    item.classList.toggle('active', item.dataset.page === pageName);
-  });
-
-  sidebar.classList.remove('open');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-menuButton.addEventListener('click', () => sidebar.classList.toggle('open'));
 document.querySelectorAll('.nav-item[data-page]').forEach((item) => {
-  item.addEventListener('click', (event) => showPage(item.dataset.page, event));
+  const isCurrentPage = item.dataset.page === currentPage;
+  item.classList.toggle('active', isCurrentPage);
+  if (isCurrentPage) {
+    item.setAttribute('aria-current', 'page');
+  } else {
+    item.removeAttribute('aria-current');
+  }
 });
-document.getElementById('fullTimetableButton').addEventListener('click', (event) => showPage('timetable', event));
-document.getElementById('backToDashboard').addEventListener('click', () => showPage('dashboard'));
+
+document.getElementById('menuButton')?.addEventListener('click', () => {
+  sidebar?.classList.toggle('open');
+});
 
 function showToast(message) {
+  if (!toast) return;
   toast.textContent = message;
   toast.classList.add('show');
   window.setTimeout(() => toast.classList.remove('show'), 2600);
 }
 
-document.getElementById('scheduleButton').addEventListener('click', () => showToast('Added to your schedule'));
-document.getElementById('viewTasks').addEventListener('click', () => document.getElementById('assignments').scrollIntoView({ behavior: 'smooth' }));
-document.getElementById('assignmentButton').addEventListener('click', () => showToast('All assignments are up to date'));
-document.getElementById('downloadTimetable').addEventListener('click', () => showToast('Timetable download is ready'));
+document.getElementById('scheduleButton')?.addEventListener('click', () => showToast('Added to your schedule'));
+document.getElementById('viewTasks')?.addEventListener('click', () => {
+  window.location.href = 'assignments.html';
+});
+document.getElementById('fullTimetableButton')?.addEventListener('click', () => {
+  window.location.href = 'timetable.html';
+});
+document.getElementById('assignmentButton')?.addEventListener('click', () => {
+  window.location.href = 'assignments.html';
+});
+document.getElementById('downloadTimetable')?.addEventListener('click', () => showToast('Timetable download is ready'));
+
 document.querySelectorAll('[data-toast]').forEach((button) => {
   button.addEventListener('click', () => showToast(button.dataset.toast));
 });
@@ -77,10 +67,11 @@ const messages = {
 };
 
 const messageDetail = document.getElementById('messageDetail');
-
 document.querySelectorAll('.message-item[data-message]').forEach((item) => {
   item.addEventListener('click', () => {
     const message = messages[item.dataset.message];
+    if (!message || !messageDetail) return;
+
     messageDetail.className = 'message-detail';
     messageDetail.innerHTML = `<div class="message-detail-head"><div class="avatar ${message.avatar}">${message.initials}</div><div><strong>${message.sender}</strong><small>${message.time}</small></div><button class="message-reply" data-toast="Reply window opened">Reply ↩</button></div><p class="message-subject">${message.subject}</p><p class="message-body">${message.body.replaceAll('\n', '<br>')}</p>`;
     document.querySelectorAll('.message-item').forEach((messageItem) => messageItem.classList.remove('selected'));

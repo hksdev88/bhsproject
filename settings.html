@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings | Bloombreed Schools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="settings">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div><div><strong>Bloombreed</strong><small>Schools</small></div></div>
+      <div class="school-year">2026 / 2027 <span>⌄</span></div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <p class="nav-label">Workspace</p>
+        <a class="nav-item" href="index.html" data-page="dashboard"><span class="nav-icon">⌂</span>Overview</a>
+        <a class="nav-item" href="timetable.html" data-page="timetable"><span class="nav-icon">▦</span>My timetable</a>
+        <a class="nav-item" href="assignments.html" data-page="assignments"><span class="nav-icon">✓</span>Assignments <b class="nav-count">3</b></a>
+        <a class="nav-item" href="results.html" data-page="results"><span class="nav-icon">◒</span>Results</a>
+        <a class="nav-item" href="resources.html" data-page="resources"><span class="nav-icon">▤</span>Resources</a>
+        <p class="nav-label second-label">Community</p>
+        <a class="nav-item" href="messages.html" data-page="messages"><span class="nav-icon">◌</span>Messages <b class="nav-count yellow">2</b></a>
+        <a class="nav-item" href="events.html" data-page="events"><span class="nav-icon">◇</span>School events</a>
+      </nav>
+      <div class="sidebar-bottom"><a class="nav-item active" href="settings.html" data-page="settings" aria-current="page"><span class="nav-icon">⚙</span>Settings</a><div class="help-card"><div class="help-icon">?</div><div><strong>Need some help?</strong><small>Visit the support desk</small></div><span>→</span></div><div class="profile-mini"><div class="avatar avatar-red">AO</div><div><strong>Allen Ofum</strong><small>Year 9 · Student</small></div><span class="more">•••</span></div></div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar"><button class="menu-button" id="menuButton" aria-label="Open navigation">☰</button><div class="breadcrumb"><span>Student portal</span><b>/</b> Settings</div><div class="top-actions"><button class="icon-button" aria-label="Search">⌕</button><button class="icon-button notification" aria-label="Notifications"><span></span>♧</button><div class="top-profile"><div class="avatar avatar-blue">AO</div><strong>Allen Ofum</strong><span>⌄</span></div></div></header>
+      <section class="content-wrap app-page">
+        <div class="page-heading"><div><p class="eyebrow">Make it yours</p><h1>Settings<span>.</span></h1><p class="intro">Manage your profile and student portal preferences.</p></div></div>
+        <div class="settings-layout"><div class="settings-card"><p class="panel-eyebrow">Profile</p><div class="settings-profile"><div class="avatar avatar-red">AO</div><div><strong>Allen Ofum</strong><p>Year 9 · Student ID: BS-0924</p></div><button class="small-action" data-toast="Profile editing opened">Edit profile</button></div></div><div class="settings-card"><p class="panel-eyebrow">Preferences</p><label class="setting-row"><span><strong>Email notifications</strong><small>Receive updates about assignments and school events.</small></span><input type="checkbox" checked><i></i></label><label class="setting-row"><span><strong>Weekly summary</strong><small>Get a Monday overview of your school week.</small></span><input type="checkbox" checked><i></i></label><label class="setting-row"><span><strong>Show completed work</strong><small>Keep completed assignments visible in your lists.</small></span><input type="checkbox"><i></i></label></div></div>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
