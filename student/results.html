@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results | Bloombreed Schools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/shared.css">
+  <link rel="stylesheet" href="../styles/student.css">
+  <link rel="stylesheet" href="../styles/results.css">
+  <link rel="stylesheet" href="../styles/portal.css">
+</head>
+<body data-page="results" data-role="student">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div><div><strong>Bloombreed</strong><small>Schools</small></div></div>
+      <div class="school-year">2026 / 2027 <span>⌄</span></div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <p class="nav-label">Workspace</p>
+        <a class="nav-item" href="index.html" data-page="dashboard"><span class="nav-icon">⌂</span>Overview</a>
+        <a class="nav-item" href="timetable.html" data-page="timetable"><span class="nav-icon">▦</span>My timetable</a>
+        <a class="nav-item" href="assignments.html" data-page="assignments"><span class="nav-icon">✓</span>Assignments <b class="nav-count">3</b></a>
+        <a class="nav-item active" href="results.html" data-page="results" aria-current="page"><span class="nav-icon">◒</span>Results</a>
+        <a class="nav-item" href="resources.html" data-page="resources"><span class="nav-icon">▤</span>Resources</a>
+        <p class="nav-label second-label">Community</p>
+        <a class="nav-item" href="messages.html" data-page="messages"><span class="nav-icon">◌</span>Messages <b class="nav-count yellow">2</b></a>
+        <a class="nav-item" href="events.html" data-page="events"><span class="nav-icon">◇</span>School events</a>
+      </nav>
+      <div class="sidebar-bottom"><a class="nav-item" href="settings.html" data-page="settings"><span class="nav-icon">⚙</span>Settings</a><div class="help-card"><div class="help-icon">?</div><div><strong>Need some help?</strong><small>Visit the support desk</small></div><span>→</span></div><div class="profile-mini"><div class="avatar avatar-red">AO</div><div><strong>Allen Ofum</strong><small>Year 9 · Student</small></div><span class="more">•••</span></div></div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar"><button class="menu-button" id="menuButton" aria-label="Open navigation">☰</button><div class="breadcrumb"><span>Student portal</span><b>/</b> Results</div><div class="top-actions"><button class="icon-button" aria-label="Search">⌕</button><button class="icon-button notification" aria-label="Notifications"><span></span>♧</button><div class="top-profile"><div class="avatar avatar-blue">AO</div><strong>Allen Ofum</strong><span>⌄</span></div></div></header>
+      <section class="content-wrap app-page">
+        <div class="page-heading"><div><p class="eyebrow">Academic progress</p><h1>My results<span>.</span></h1><p class="intro">Track your performance across subjects and terms.</p></div><div class="results-actions"><button class="secondary-button" id="switchStudentBtn" type="button">Switch Student / Log Out</button><button class="primary-button" data-toast="Results report downloaded"><span>↓</span> Download report</button></div></div>
+        <div class="results-highlight"><div><p class="panel-eyebrow">Average score</p><strong id="scoreDisplay">—</strong><span class="score-scale">/100</span><p id="scoreStatus">Loading scores…</p></div><div class="result-ring"><span id="scoreRingValue">—</span></div></div>
+        <div class="results-table"><div class="table-header"><span>Subject</span><span>Assessment</span><span>Source</span><span>Score</span><span></span></div><div id="studentResultsList"><p class="results-empty-state">Loading scores…</p></div></div>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../script.js"></script>
+</body>
+</html>

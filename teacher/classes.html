@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My classes | Bloombreed Schools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/shared.css">
+  <link rel="stylesheet" href="../styles/teacher.css">
+</head>
+<body class="teacher-page" data-teacher-page="classes">
+  <div class="teacher-shell">
+    <aside class="teacher-sidebar">
+      <a class="brand teacher-brand" href="../index.html"><div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div><div><strong>Bloombreed</strong><small>Schools</small></div></a>
+      <p class="teacher-nav-label">TEACHER WORKSPACE</p>
+      <nav class="teacher-nav" aria-label="Teacher navigation">
+        <a class="teacher-nav-link" href="overview.html" data-teacher-page="overview"><span class="teacher-nav-icon">⌂</span><span>Overview</span></a>
+        <a class="teacher-nav-link selected" href="classes.html" data-teacher-page="classes"><span class="teacher-nav-icon">▦</span><span>My classes</span></a>
+        <a class="teacher-nav-link" href="scores.html" data-teacher-page="scores"><span class="teacher-nav-icon">✓</span><span>Input scores</span></a>
+        <a class="teacher-nav-link" href="messages.html" data-teacher-page="messages"><span class="teacher-nav-icon">✉</span><span>Messages</span></a>
+      </nav>
+      <div class="teacher-sidebar-bottom"><a class="teacher-nav-link" href="../student/index.html"><span class="teacher-nav-icon">♙</span><span>Student portal preview</span></a><a class="teacher-back-link" href="../index.html">← Change portal</a><div class="teacher-profile"><span class="teacher-avatar">T</span><span><strong>Teacher</strong><small>Staff workspace</small></span></div></div>
+    </aside>
+    <main class="teacher-main">
+      <header class="teacher-topbar"><button class="teacher-menu-button" id="teacherMenuButton" type="button" aria-label="Open teacher navigation">☰</button><div class="teacher-page-heading"><p class="eyebrow">Teacher workspace</p><h1>My classes<span>.</span></h1></div></header>
+      <section class="teacher-content">
+        <div class="teacher-section-intro"><p class="eyebrow">YOUR TEACHING GROUPS</p><h2>My classes</h2><p>Classes and subjects assigned to your workspace.</p></div>
+        <div class="teacher-class-grid">
+          <article class="teacher-class-card"><span class="teacher-class-mark math-mark">M</span><div><p class="panel-eyebrow">YEAR 9 · ROOM 3B</p><h3>Mathematics</h3><p>Quadratic equations, algebra, and geometry.</p></div><span class="teacher-class-count">32 students</span></article>
+          <article class="teacher-class-card"><span class="teacher-class-mark english-mark">E</span><div><p class="panel-eyebrow">YEAR 9 · ROOM 2A</p><h3>English Language</h3><p>Writing, reading comprehension, and grammar.</p></div><span class="teacher-class-count">30 students</span></article>
+          <article class="teacher-class-card"><span class="teacher-class-mark science-mark">C</span><div><p class="panel-eyebrow">YEAR 9 · LAB 1</p><h3>Basic Chemistry</h3><p>Laboratory skills and introductory chemistry.</p></div><span class="teacher-class-count">28 students</span></article>
+          <article class="teacher-class-card"><span class="teacher-class-mark literature-mark">L</span><div><p class="panel-eyebrow">YEAR 9 · ROOM 1C</p><h3>Literature</h3><p>Reading, interpretation, and literary analysis.</p></div><span class="teacher-class-count">30 students</span></article>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../script.js"></script>
+</body>
+</html>

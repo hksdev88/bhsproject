@@ -1,0 +1,230 @@
+/* Full timetable page */
+.page-view[hidden] {
+  display: none;
+}
+
+.back-button {
+  padding: 0;
+  background: none;
+  color: var(--red);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.back-button span {
+  margin-right: 7px;
+  font-size: 16px;
+}
+
+.timetable-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.week-switcher {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--blue);
+  font-size: 13px;
+}
+
+.week-switcher .round-button {
+  color: var(--blue);
+  font-size: 14px;
+}
+
+.current-week {
+  padding: 6px 9px;
+  background: #e7f7f0;
+  color: #24916d;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 5px;
+}
+
+.weekly-schedule {
+  display: grid;
+  grid-template-columns: 72px repeat(5, minmax(145px, 1fr));
+  min-width: 800px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.schedule-corner,
+.day-heading,
+.schedule-time {
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.schedule-corner {
+  padding: 18px 12px;
+  color: #a5afbd;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.day-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 15px;
+  color: #95a0b0;
+}
+
+.day-heading strong {
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.day-heading span {
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  color: var(--blue);
+  font: 700 13px 'Space Grotesk';
+  border-radius: 50%;
+}
+
+.day-heading.active-day {
+  background: #fff6f6;
+  color: var(--red);
+}
+
+.day-heading.active-day span {
+  background: var(--red);
+  color: #fff;
+}
+
+.schedule-time {
+  padding: 17px 10px;
+  color: #8290a2;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.schedule-time small {
+  display: block;
+  margin-top: 3px;
+  color: #b2bac5;
+  font-size: 8px;
+}
+
+.class-block {
+  position: relative;
+  min-height: 105px;
+  padding: 15px 13px;
+  border-right: 1px solid #f0f2f5;
+  border-bottom: 1px solid var(--line);
+}
+
+.class-block strong,
+.class-block small {
+  display: block;
+}
+
+.class-block strong {
+  color: var(--blue);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.class-block small {
+  margin-top: 8px;
+  color: #8d9aab;
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.math-class {
+  background: #fff4f4;
+  border-left: 3px solid var(--red);
+}
+
+.english-class {
+  background: #f0f5ff;
+  border-left: 3px solid var(--blue);
+}
+
+.science-class {
+  background: #fff9e9;
+  border-left: 3px solid var(--yellow);
+}
+
+.literature-class {
+  background: #f3f8f5;
+  border-left: 3px solid #4db88e;
+}
+
+.current-class {
+  box-shadow: inset 0 0 0 2px var(--red);
+}
+
+.current-class span {
+  display: inline-block;
+  margin-top: 11px;
+  padding: 3px 5px;
+  background: var(--red);
+  color: #fff;
+  font-size: 8px;
+  font-weight: 700;
+  border-radius: 3px;
+}
+
+.timetable-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  margin-top: 15px;
+  padding: 14px 16px;
+  background: #fff7df;
+  border: 1px solid #f7e9bd;
+  border-radius: 8px;
+}
+
+.timetable-note > span {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  background: var(--yellow);
+  color: #896300;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 50%;
+}
+
+.timetable-note strong {
+  display: block;
+  color: var(--ink);
+  font-size: 11px;
+}
+
+.timetable-note p {
+  margin: 4px 0 0;
+  color: #9b8a5a;
+  font-size: 10px;
+}
+
+@media (max-width: 850px) {
+  .timetable-page {
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .timetable-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
