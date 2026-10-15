@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resources | Bloombreed Schools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/shared.css">
+  <link rel="stylesheet" href="../styles/student.css">
+  <link rel="stylesheet" href="../styles/resources.css">
+  <link rel="stylesheet" href="../styles/portal.css">
+</head>
+<body data-page="resources" data-role="student">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div><div><strong>Bloombreed</strong><small>Schools</small></div></div>
+      <div class="school-year">2026 / 2027 <span>⌄</span></div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <p class="nav-label">Workspace</p>
+        <a class="nav-item" href="index.html" data-page="dashboard"><span class="nav-icon">⌂</span>Overview</a>
+        <a class="nav-item" href="timetable.html" data-page="timetable"><span class="nav-icon">▦</span>My timetable</a>
+        <a class="nav-item" href="assignments.html" data-page="assignments"><span class="nav-icon">✓</span>Assignments <b class="nav-count">3</b></a>
+        <a class="nav-item" href="results.html" data-page="results"><span class="nav-icon">◒</span>Results</a>
+        <a class="nav-item active" href="resources.html" data-page="resources" aria-current="page"><span class="nav-icon">▤</span>Resources</a>
+        <p class="nav-label second-label">Community</p>
+        <a class="nav-item" href="messages.html" data-page="messages"><span class="nav-icon">◌</span>Messages <b class="nav-count yellow">2</b></a>
+        <a class="nav-item" href="events.html" data-page="events"><span class="nav-icon">◇</span>School events</a>
+      </nav>
+      <div class="sidebar-bottom"><a class="nav-item" href="settings.html" data-page="settings"><span class="nav-icon">⚙</span>Settings</a><div class="help-card"><div class="help-icon">?</div><div><strong>Need some help?</strong><small>Visit the support desk</small></div><span>→</span></div><div class="profile-mini"><div class="avatar avatar-red">AO</div><div><strong>Allen Ofum</strong><small>Year 9 · Student</small></div><span class="more">•••</span></div></div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar"><button class="menu-button" id="menuButton" aria-label="Open navigation">☰</button><div class="breadcrumb"><span>Student portal</span><b>/</b> Resources</div><div class="top-actions"><button class="icon-button" aria-label="Search">⌕</button><button class="icon-button notification" aria-label="Notifications"><span></span>♧</button><div class="top-profile"><div class="avatar avatar-blue">AO</div><strong>Allen Ofum</strong><span>⌄</span></div></div></header>
+      <section class="content-wrap app-page">
+        <div class="page-heading"><div><p class="eyebrow">Your learning space</p><h1>Resources<span>.</span></h1><p class="intro">Useful notes, guides, and materials from your teachers.</p></div><button class="primary-button" data-toast="Resource upload opened"><span>↑</span> Upload resource</button></div>
+        <div class="resource-grid"><article class="resource-card resource-red"><span class="resource-icon">▤</span><div><strong>Mathematics notes</strong><p>12 files · Updated today</p></div><button aria-label="Open Mathematics notes">↗</button></article><article class="resource-card resource-blue"><span class="resource-icon">A</span><div><strong>English reading list</strong><p>8 files · Updated yesterday</p></div><button aria-label="Open English reading list">↗</button></article><article class="resource-card resource-yellow"><span class="resource-icon">S</span><div><strong>Chemistry lab guides</strong><p>6 files · Updated 3 Sep</p></div><button aria-label="Open Chemistry lab guides">↗</button></article><article class="resource-card resource-green"><span class="resource-icon">◇</span><div><strong>Year 9 study skills</strong><p>4 files · Updated 29 Aug</p></div><button aria-label="Open Year 9 study skills">↗</button></article></div>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../script.js"></script>
+</body>
+</html>

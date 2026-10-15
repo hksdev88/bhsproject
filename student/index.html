@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bloombreed Schools | Student Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/shared.css">
+  <link rel="stylesheet" href="../styles/portal.css">
+</head>
+<body data-page="dashboard" data-role="student">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div>
+          <strong>Bloombreed</strong>
+          <small>Schools</small>
+        </div>
+      </div>
+
+      <div class="school-year">2026 / 2027 <span>⌄</span></div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <p class="nav-label">Workspace</p>
+        <a class="nav-item active" href="index.html" data-page="dashboard" aria-current="page"><span class="nav-icon">⌂</span>Overview</a>
+        <a class="nav-item" href="timetable.html" data-page="timetable"><span class="nav-icon">▦</span>My timetable</a>
+        <a class="nav-item" href="assignments.html" data-page="assignments"><span class="nav-icon">✓</span>Assignments <b class="nav-count">3</b></a>
+        <a class="nav-item" href="results.html" data-page="results"><span class="nav-icon">◒</span>Results</a>
+        <a class="nav-item" href="resources.html" data-page="resources"><span class="nav-icon">▤</span>Resources</a>
+        <p class="nav-label second-label">Community</p>
+        <a class="nav-item" href="messages.html" data-page="messages"><span class="nav-icon">◌</span>Messages <b class="nav-count yellow">2</b></a>
+        <a class="nav-item" href="events.html" data-page="events"><span class="nav-icon">◇</span>School events</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <a class="nav-item" href="settings.html" data-page="settings"><span class="nav-icon">⚙</span>Settings</a>
+        <div class="help-card">
+          <div class="help-icon">?</div>
+          <div><strong>Need some help?</strong><small>Visit the support desk</small></div>
+          <span>→</span>
+        </div>
+        <div class="profile-mini">
+          <div class="avatar avatar-red">AO</div>
+          <div><strong>Allen Ofum</strong><small>Year 9 · Student</small></div>
+          <span class="more">•••</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="overview">
+      <header class="topbar">
+        <button class="menu-button" id="menuButton" aria-label="Open navigation">☰</button>
+        <div class="breadcrumb"><span>Student portal</span><b>/</b> Overview</div>
+        <div class="top-actions">
+          <button class="icon-button" aria-label="Search">⌕</button>
+          <button class="icon-button notification" aria-label="Notifications"><span></span>♧</button>
+          <div class="top-profile"><div class="avatar avatar-blue">AO</div><strong>Allen Ofum</strong><span>⌄</span></div>
+        </div>
+      </header>
+
+      <div class="content-wrap dashboard-page" id="dashboardPage">
+        <section class="welcome-row">
+          <div>
+            <p class="eyebrow">Thursday, 12 September 2026</p>
+            <h1>Good morning, <span id="studentNameGreeting">Student</span><span>.</span></h1>
+            <p class="intro">Here’s what’s happening across your school day.</p>
+          </div>
+          <button class="primary-button" id="scheduleButton"><span>＋</span> Add to schedule</button>
+        </section>
+
+        <section class="hero-card">
+          <div class="hero-copy">
+            <div class="hero-kicker"><span class="pulse-dot"></span> Thursday focus</div>
+            <h2>Small steps.<br><em>Big progress.</em></h2>
+            <p>Keep your momentum going, Allen. You have 3 tasks to complete this week.</p>
+            <button class="light-button" id="viewTasks">View my tasks <span>↗</span></button>
+          </div>
+          <div class="hero-graphic" aria-hidden="true">
+            <div class="sun"></div><div class="graphic-line line-one"></div><div class="graphic-line line-two"></div>
+            <div class="graphic-card card-one">+ 12%</div><div class="graphic-card card-two">✓</div>
+            <div class="graphic-book"><div></div><div></div><div></div></div>
+          </div>
+          <div class="hero-corner">09<br><small>SEP</small></div>
+        </section>
+
+        <section class="stats-grid" aria-label="Academic summary">
+          <article class="stat-card"><div class="stat-top"><span class="stat-icon red-icon">▣</span><span class="trend up">↑ 8%</span></div><strong>86%</strong><p>Overall attendance</p><div class="mini-progress"><span style="width: 86%"></span></div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-icon blue-icon">✦</span><span class="trend up">↑ 4.2</span></div><strong>78.4</strong><p>Average score</p><div class="mini-progress blue-progress"><span style="width: 78%"></span></div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-icon yellow-icon">✓</span><span class="trend neutral">This week</span></div><strong>3</strong><p>Pending assignments</p><div class="assignment-dots"><i></i><i></i><i></i><i></i><i></i></div></article>
+        </section>
+
+        <div class="dashboard-grid">
+          <section class="panel schedule-panel" id="timetable">
+            <div class="panel-heading"><div><p class="panel-eyebrow">Your day</p><h3>Today’s timetable</h3></div><button class="text-button" id="fullTimetableButton">Full timetable <span>→</span></button></div>
+            <div class="timeline">
+              <div class="timeline-item done"><time>08:00 <small>AM</small></time><div class="time-line"><span></span></div><div class="lesson"><div class="lesson-head"><strong>Mathematics</strong><span class="tag green-tag">Completed</span></div><p>Mr. Boma</p></div></div>
+              <div class="timeline-item current"><time>10:15 <small>AM</small></time><div class="time-line"><span></span></div><div class="lesson"><div class="lesson-head"><strong>English Language</strong><span class="tag red-tag">In progress</span></div><p>Mrs. Joshua</p></div></div>
+              <div class="timeline-item"><time>12:00 <small>PM</small></time><div class="time-line"><span></span></div><div class="lesson"><div class="lesson-head"><strong>Basic Chemistry</strong><span class="tag gray-tag">Upcoming</span></div><p>Mr. Michael</p></div></div>
+              <div class="timeline-item"><time>01:30 <small>PM</small></time><div class="time-line"><span></span></div><div class="lesson"><div class="lesson-head"><strong>Literature</strong><span class="tag gray-tag">Upcoming</span></div><p>Mr. Goodness</p></div></div>
+            </div>
+          </section>
+
+          <section class="panel assignments-panel" id="assignments">
+            <div class="panel-heading"><div><p class="panel-eyebrow">Keep moving</p><h3>Assignments</h3></div><button class="round-button" aria-label="Add assignment">＋</button></div>
+            <div class="assignment-list">
+              <article class="assignment"><div class="subject-badge math-badge">M</div><div class="assignment-copy"><strong>Quadratic equations</strong><p>Mathematics · Due tomorrow</p></div><span class="priority-dot urgent"></span></article>
+              <article class="assignment"><div class="subject-badge english-badge">A</div><div class="assignment-copy"><strong>My favourite author</strong><p>English · Due 16 Sep</p></div><span class="priority-dot soon"></span></article>
+              <article class="assignment"><div class="subject-badge science-badge">S</div><div class="assignment-copy"><strong>Plant cell diagram</strong><p>Basic Science · Due 18 Sep</p></div><span class="priority-dot later"></span></article>
+            </div>
+            <button class="outline-button" id="assignmentButton">See all assignments <span>→</span></button>
+          </section>
+        </div>
+
+        <section class="lower-grid">
+          <article class="notice-strip"><div class="notice-mark">!</div><div><p class="panel-eyebrow">School notice</p><strong>Inter-house sports day is coming up</strong><p>Friday, 20 September · School field</p></div><button class="text-button">Details <span>↗</span></button></article>
+          <article class="quote-card"><span class="quote-mark">“</span><p>Success is the sum of small efforts, repeated day in and day out.</p><small>— Robert Collier</small></article>
+        </section>
+        <footer>2026 Bloombreed Schools <span>·</span> Student portal</footer>
+      </div>
+
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status">Added to your schedule</div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../script.js"></script>
+
+</body>
+</html>
