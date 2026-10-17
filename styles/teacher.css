@@ -623,6 +623,113 @@
   cursor: wait;
 }
 
+.teacher-message-sender {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.teacher-sent-messages {
+  margin-top: 16px;
+  padding: 20px;
+}
+
+.teacher-sent-message-row {
+  display: grid;
+  grid-template-columns: minmax(90px, 1fr) minmax(120px, 2fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+
+.teacher-sent-message-row strong {
+  color: var(--blue);
+  font-size: 11px;
+}
+
+.teacher-sent-message-row span {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.teacher-setup-overlay {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: #101c2bb8;
+}
+
+.teacher-setup-dialog {
+  display: grid;
+  gap: 12px;
+  width: min(100%, 430px);
+  padding: 28px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 20px 60px #0003;
+}
+
+.teacher-setup-dialog h2,
+.teacher-setup-dialog p {
+  margin: 0;
+}
+
+.teacher-setup-dialog > p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.teacher-setup-dialog label {
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.teacher-setup-dialog input,
+.teacher-setup-dialog select {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+}
+
+.teacher-sent-delete {
+  padding: 6px 9px;
+  border: 1px solid #f0c9c9;
+  border-radius: 5px;
+  background: #fff;
+  color: #a83e3e;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.teacher-sent-delete:hover {
+  background: #fff4f4;
+}
+
+.message-delete {
+  margin-top: 18px;
+  padding: 8px 11px;
+  border: 1px solid #f0c9c9;
+  border-radius: 5px;
+  background: #fff;
+  color: #a83e3e;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 .teacher-empty-state {
   margin: 0;
   padding: 14px 0 2px;
@@ -784,5 +891,10 @@
   .teacher-score-delete {
     padding: 5px 6px;
     font-size: 9px;
+  }
+
+  .teacher-sent-message-row {
+    grid-template-columns: minmax(70px, 1fr) minmax(85px, 1.5fr) auto;
+    gap: 7px;
   }
 }

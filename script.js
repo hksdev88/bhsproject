@@ -11,13 +11,18 @@ const studentNameKey = 'bloombreedStudentName';
 const studentIdKey = 'bloombreedStudentId';
 const studentMessagesKey = 'bloombreedStudentMessages';
 const teacherScoresKey = 'bloombreedTeacherScores';
+const teacherNameKey = 'bloombreedTeacherName';
+const teacherSubjectKey = 'bloombreedTeacherSubject';
+const teacherIdKey = 'bloombreedTeacherId';
+const hiddenSampleMessagesKey = 'bloombreedHiddenSampleMessages';
+const teacherSubjects = ['Mathematics', 'English Language', 'Basic Chemistry', 'Literature'];
 
 if (document.body.dataset.role === 'student') {
   const applyStudentId = (studentId) => {
     localStorage.setItem(studentIdKey, studentId);
     const studentIdDisplay = document.getElementById('studentIdDisplay');
     if (studentIdDisplay) studentIdDisplay.textContent = studentId;
-    if (currentPage === 'results') {
+    if (currentPage === 'results' || currentPage === 'dashboard') {
       renderStudentScores(studentId);
       studentLoadScore(studentId);
     }
@@ -93,6 +98,72 @@ function showToast(message) {
   window.setTimeout(() => toast.classList.remove('show'), 2600);
 }
 
+function getTeacherProfile() {
+  return {
+    id: localStorage.getItem(teacherIdKey),
+    name: localStorage.getItem(teacherNameKey),
+    subject: localStorage.getItem(teacherSubjectKey),
+  };
+}
+
+function applyTeacherProfile(profile) {
+  document.querySelectorAll('[data-teacher-name]').forEach((element) => {
+    element.textContent = profile.name;
+  });
+  document.querySelectorAll('[data-teacher-subject]').forEach((element) => {
+    element.textContent = profile.subject;
+  });
+  document.querySelectorAll('[data-teacher-initial]').forEach((element) => {
+    element.textContent = profile.name.split(/\s+/).map((part) => part[0]).join('').slice(0, 2).toUpperCase();
+  });
+
+  const subjectSelect = document.querySelector('#teacherScoreForm select[name="subject"]');
+  if (subjectSelect) {
+    [...subjectSelect.options].forEach((option) => {
+      if (option.value) option.disabled = option.value !== profile.subject;
+    });
+    subjectSelect.value = profile.subject;
+  }
+
+  const sender = document.querySelector('#teacherMessageForm [data-teacher-name]');
+  if (sender) sender.textContent = profile.name;
+}
+
+function setupTeacherProfile() {
+  const storedProfile = getTeacherProfile();
+  if (storedProfile.name && storedProfile.subject && storedProfile.id) {
+    applyTeacherProfile(storedProfile);
+    return;
+  }
+
+  const overlay = document.createElement('div');
+  overlay.className = 'teacher-setup-overlay';
+  overlay.innerHTML = `<form class="teacher-setup-dialog" role="dialog" aria-modal="true" aria-labelledby="teacherSetupTitle"><p class="panel-eyebrow">TEACHER WORKSPACE</p><h2 id="teacherSetupTitle">Set up your teacher profile</h2><p>Enter your name and choose the subject you teach. Scores you enter will be limited to that subject.</p><label for="teacherNameInput">Your name</label><input id="teacherNameInput" name="teacherName" type="text" autocomplete="name" required maxlength="60" placeholder="Enter your name"><label for="teacherSubjectInput">Subject you teach</label><select id="teacherSubjectInput" name="teacherSubject" required><option value="">Choose your subject</option>${teacherSubjects.map((subject) => `<option value="${subject}">${subject}</option>`).join('')}</select><button class="primary-button" type="submit">Continue <span>→</span></button></form>`;
+  document.body.append(overlay);
+  overlay.querySelector('#teacherNameInput').value = storedProfile.name || '';
+  overlay.querySelector('#teacherSubjectInput').value = storedProfile.subject || '';
+  overlay.querySelector('form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const name = overlay.querySelector('#teacherNameInput').value.trim();
+    const subject = overlay.querySelector('#teacherSubjectInput').value;
+    if (!name || !teacherSubjects.includes(subject)) return;
+    const id = storedProfile.id || (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
+      ? crypto.randomUUID()
+      : `${Date.now()}-${Math.random()}`);
+    localStorage.setItem(teacherNameKey, name);
+    localStorage.setItem(teacherSubjectKey, subject);
+    localStorage.setItem(teacherIdKey, id);
+    const profile = { id, name, subject };
+    applyTeacherProfile(profile);
+    overlay.remove();
+    renderTeacherScores();
+    renderTeacherMessages();
+  });
+  overlay.querySelector('#teacherNameInput').focus();
+}
+
+if (document.body.dataset.teacherPage) setupTeacherProfile();
+
 document.getElementById('scheduleButton')?.addEventListener('click', () => showToast('Added to your schedule'));
 document.getElementById('viewTasks')?.addEventListener('click', () => {
   window.location.href = 'assignments.html';
@@ -110,37 +181,119 @@ document.querySelectorAll('[data-toast]').forEach((button) => {
 });
 
 const teacherMessageForm = document.getElementById('teacherMessageForm');
-const recipientInput = teacherMessageForm?.elements.namedItem('recipient');
-if (recipientInput && localStorage.getItem(studentNameKey)) {
-  recipientInput.value = localStorage.getItem(studentNameKey);
+const teacherSentMessageList = document.getElementById('teacherSentMessageList');
+
+function readStudentMessages() {
+  const storedMessages = JSON.parse(localStorage.getItem(studentMessagesKey) || '[]');
+  if (!Array.isArray(storedMessages)) {
+    showToast('Saved messages could not be read.');
+    return null;
+  }
+  let migrated = false;
+  storedMessages.forEach((message) => {
+    if (!message.localId) {
+      message.localId = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+      migrated = true;
+    }
+    if (typeof message.read !== 'boolean') {
+      message.read = false;
+      migrated = true;
+    }
+  });
+  if (migrated) saveStudentMessages(storedMessages);
+  return storedMessages;
 }
+
+function saveStudentMessages(messages) {
+  localStorage.setItem(studentMessagesKey, JSON.stringify(messages));
+}
+
+function renderTeacherMessages() {
+  if (!teacherSentMessageList) return;
+  const profile = getTeacherProfile();
+  const storedMessages = readStudentMessages();
+  if (!storedMessages || !profile.id) return;
+  let migrated = false;
+  storedMessages.forEach((message) => {
+    if (!message.senderId && (message.sender === profile.name || message.sender === 'Teacher')) {
+      message.senderId = profile.id;
+      migrated = true;
+    }
+  });
+  if (migrated) saveStudentMessages(storedMessages);
+  const ownedMessages = storedMessages.filter((message) => message.senderId === profile.id);
+  teacherSentMessageList.replaceChildren();
+  if (!ownedMessages.length) {
+    const emptyState = document.createElement('p');
+    emptyState.className = 'teacher-empty-state';
+    emptyState.textContent = 'No messages sent yet.';
+    teacherSentMessageList.append(emptyState);
+    return;
+  }
+  ownedMessages.slice().reverse().forEach((message) => {
+    const row = document.createElement('div');
+    row.className = 'teacher-sent-message-row';
+    const recipient = document.createElement('strong');
+    recipient.textContent = message.recipient;
+    const details = document.createElement('span');
+    details.textContent = `${message.subject} · ${message.time}`;
+    const deleteButton = document.createElement('button');
+    deleteButton.className = 'teacher-sent-delete';
+    deleteButton.type = 'button';
+    deleteButton.dataset.deleteSentMessage = message.localId;
+    deleteButton.textContent = 'Delete';
+    deleteButton.setAttribute('aria-label', `Delete message to ${message.recipient}: ${message.subject}`);
+    row.append(recipient, details, deleteButton);
+    teacherSentMessageList.append(row);
+  });
+}
+
 teacherMessageForm?.addEventListener('submit', (event) => {
   event.preventDefault();
   const formData = new FormData(teacherMessageForm);
+  const profile = getTeacherProfile();
   const message = {
-    sender: String(formData.get('sender')).trim(),
+    localId: `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`,
+    senderId: profile.id,
+    sender: profile.name,
+    senderSubject: profile.subject,
     recipient: String(formData.get('recipient')).trim(),
     subject: String(formData.get('subject')).trim(),
     body: String(formData.get('body')).trim(),
     time: new Date().toLocaleString(),
+    read: false,
+    hiddenFromStudent: false,
   };
 
-  if (!message.sender || !message.recipient || !message.subject || !message.body) {
+  if (!message.sender || !message.senderSubject || !message.recipient || !message.subject || !message.body) {
     showToast('Please complete every message field.');
     return;
   }
 
-  const storedMessages = JSON.parse(localStorage.getItem(studentMessagesKey) || '[]');
-  if (!Array.isArray(storedMessages)) {
-    showToast('Saved messages could not be read.');
+  const storedMessages = readStudentMessages();
+  if (!storedMessages) return;
+  storedMessages.push(message);
+  saveStudentMessages(storedMessages);
+  teacherMessageForm.reset();
+  renderTeacherMessages();
+  showToast(`Message sent to ${message.recipient}.`);
+});
+
+teacherSentMessageList?.addEventListener('click', (event) => {
+  const button = event.target.closest('button[data-delete-sent-message]');
+  if (!button) return;
+  const messages = readStudentMessages();
+  if (!messages) return;
+  const message = messages.find((item) => item.localId === button.dataset.deleteSentMessage);
+  if (!message) {
+    renderTeacherMessages();
+    showToast('That message could not be found.');
     return;
   }
-  storedMessages.push(message);
-  localStorage.setItem(studentMessagesKey, JSON.stringify(storedMessages));
-  teacherMessageForm.reset();
-  teacherMessageForm.elements.sender.value = 'Teacher';
-  updateTeacherCounts();
-  showToast(`Message sent to ${message.recipient}.`);
+  if (!confirm(`Delete the message sent to ${message.recipient}?`)) return;
+  saveStudentMessages(messages.filter((item) => item.localId !== message.localId));
+  renderTeacherMessages();
+  showToast('Sent message deleted.');
 });
 
 function readTeacherScores() {
@@ -168,14 +321,10 @@ function renderStudentScores(studentId, cloudScores = null, cloudLoadFailed = fa
   const scoreStatus = document.getElementById('scoreStatus');
   const scoreRingValue = document.getElementById('scoreRingValue');
   const resultRing = document.querySelector('.result-ring');
-  if (!resultsList || !scoreDisplay || !scoreStatus || !scoreRingValue) return;
 
   const scores = readTeacherScores();
-  if (!scores) {
-    scoreStatus.textContent = 'Saved scores could not be read.';
-    return;
-  }
-  const matchingLocalScores = scores.filter((score) => score.studentId === studentId);
+  if (!scores && scoreStatus) scoreStatus.textContent = 'Saved scores could not be read.';
+  const matchingLocalScores = (scores || []).filter((score) => score.studentId === studentId);
   const displayedScores = cloudScores === null
     ? matchingLocalScores.map((score) => ({ ...score, source: 'This device' }))
     : cloudScores.map((score) => ({
@@ -185,6 +334,24 @@ function renderStudentScores(studentId, cloudScores = null, cloudLoadFailed = fa
       createdAt: score.created_at,
       source: 'Supabase',
     }));
+
+  const dashboardAverage = document.getElementById('dashboardAverageScore');
+  const dashboardProgress = document.getElementById('dashboardAverageProgress');
+  const dashboardTrend = document.getElementById('averageScoreTrend');
+  if (displayedScores.length) {
+    const averageScore = displayedScores.reduce((total, score) => total + score.score, 0) / displayedScores.length;
+    if (dashboardAverage) dashboardAverage.textContent = averageScore.toFixed(1);
+    if (dashboardProgress) dashboardProgress.style.width = `${Math.min(100, Math.max(0, averageScore))}%`;
+    if (dashboardTrend) dashboardTrend.textContent = cloudScores === null
+      ? (cloudLoadFailed ? 'Device scores · cloud unavailable' : 'Scores on this device')
+      : 'Synced from Supabase';
+  } else {
+    if (dashboardAverage) dashboardAverage.textContent = '—';
+    if (dashboardProgress) dashboardProgress.style.width = '0%';
+    if (dashboardTrend) dashboardTrend.textContent = cloudLoadFailed ? 'Cloud unavailable' : 'No scores yet';
+  }
+
+  if (!resultsList || !scoreDisplay || !scoreStatus || !scoreRingValue) return;
   resultsList.replaceChildren();
 
   displayedScores.forEach((score) => {
@@ -284,8 +451,13 @@ teacherScoreForm?.addEventListener('submit', async (event) => {
     assessment: String(formData.get('assessment')).trim(),
     score: Number(formData.get('score')),
   };
+  const teacherProfile = getTeacherProfile();
   if (!score.studentId || !score.subject || !score.assessment || !Number.isInteger(score.score) || score.score < 0 || score.score > 100) {
     showToast('Enter a student ID, subject, assessment, and score from 0 to 100.');
+    return;
+  }
+  if (score.subject !== teacherProfile.subject) {
+    showToast(`Your teacher profile is set to ${teacherProfile.subject}; you can only enter scores for that subject.`);
     return;
   }
 
@@ -356,6 +528,7 @@ if (teacherPage) {
     else link.removeAttribute('aria-current');
   });
   renderTeacherScores();
+  renderTeacherMessages();
   updateTeacherCounts();
 }
 document.getElementById('teacherMenuButton')?.addEventListener('click', () => {
@@ -391,15 +564,14 @@ const messages = {
 
 const messageDetail = document.getElementById('messageDetail');
 if (messageDetail) {
-  const customMessages = JSON.parse(localStorage.getItem(studentMessagesKey) || '[]');
-  if (!Array.isArray(customMessages)) {
-    showToast('Saved messages could not be read.');
-  } else {
-    customMessages.forEach((message, index) => {
-      if (message.recipient !== localStorage.getItem(studentNameKey)) return;
+  const customMessages = readStudentMessages();
+  const currentStudentName = localStorage.getItem(studentNameKey);
+  if (customMessages) {
+    customMessages.forEach((message) => {
+      if (message.recipient !== currentStudentName || message.hiddenFromStudent || message.senderDeleted) return;
       const item = document.createElement('button');
-      item.className = 'message-item unread';
-      item.dataset.customMessage = String(index);
+      item.className = `message-item${message.read ? '' : ' unread'}`;
+      item.dataset.customMessage = message.localId;
       const avatar = document.createElement('span');
       avatar.className = 'avatar avatar-blue';
       avatar.textContent = message.sender.slice(0, 2).toUpperCase();
@@ -415,6 +587,12 @@ if (messageDetail) {
       document.querySelector('.message-list')?.prepend(item);
 
       item.addEventListener('click', () => {
+        const storedMessages = readStudentMessages();
+        const currentMessage = storedMessages?.find((entry) => entry.localId === message.localId);
+        if (!currentMessage) return;
+        currentMessage.read = true;
+        saveStudentMessages(storedMessages);
+        item.classList.remove('unread');
         messageDetail.className = 'message-detail';
         messageDetail.replaceChildren();
         const heading = document.createElement('div');
@@ -434,27 +612,56 @@ if (messageDetail) {
         messageSubject.textContent = message.subject;
         const body = document.createElement('p');
         body.className = 'message-body';
-        body.textContent = message.body;
-        messageDetail.append(heading, messageSubject, body);
+        body.textContent = currentMessage.body;
+        const hideButton = document.createElement('button');
+        hideButton.className = 'message-delete';
+        hideButton.type = 'button';
+        hideButton.textContent = 'Delete from inbox';
+        messageDetail.append(heading, messageSubject, body, hideButton);
         document.querySelectorAll('.message-item').forEach((messageItem) => messageItem.classList.remove('selected'));
         item.classList.add('selected');
-        item.classList.remove('unread');
+        hideButton.addEventListener('click', () => {
+          const latestMessages = readStudentMessages();
+          const messageToHide = latestMessages?.find((entry) => entry.localId === message.localId);
+          if (!messageToHide) return;
+          messageToHide.hiddenFromStudent = true;
+          saveStudentMessages(latestMessages);
+          item.remove();
+          messageDetail.className = 'message-empty';
+          messageDetail.innerHTML = '<span class="message-paper">◌</span><strong>Message deleted</strong><p>This message has been removed from your inbox.</p>';
+        });
       });
     });
   }
 }
 
+const hiddenSampleMessages = JSON.parse(localStorage.getItem(hiddenSampleMessagesKey) || '[]');
 document.querySelectorAll('.message-item[data-message]').forEach((item) => {
+  if (Array.isArray(hiddenSampleMessages) && hiddenSampleMessages.includes(item.dataset.message)) {
+    item.remove();
+    return;
+  }
   item.addEventListener('click', () => {
     const message = messages[item.dataset.message];
     if (!message || !messageDetail) return;
 
     messageDetail.className = 'message-detail';
-    messageDetail.innerHTML = `<div class="message-detail-head"><div class="avatar ${message.avatar}">${message.initials}</div><div><strong>${message.sender}</strong><small>${message.time}</small></div><button class="message-reply" data-toast="Reply window opened">Reply ↩</button></div><p class="message-subject">${message.subject}</p><p class="message-body">${message.body.replaceAll('\n', '<br>')}</p>`;
+    messageDetail.innerHTML = `<div class="message-detail-head"><div class="avatar ${message.avatar}">${message.initials}</div><div><strong>${message.sender}</strong><small>${message.time}</small></div></div><p class="message-subject">${message.subject}</p><p class="message-body">${message.body.replaceAll('\n', '<br>')}</p><button class="message-delete" type="button">Delete from inbox</button>`;
     document.querySelectorAll('.message-item').forEach((messageItem) => messageItem.classList.remove('selected'));
     item.classList.add('selected');
     item.classList.remove('unread');
-    messageDetail.querySelector('[data-toast]').addEventListener('click', () => showToast('Reply window opened'));
+    messageDetail.querySelector('.message-delete').addEventListener('click', () => {
+      const hiddenIds = JSON.parse(localStorage.getItem(hiddenSampleMessagesKey) || '[]');
+      if (!Array.isArray(hiddenIds)) {
+        showToast('Hidden messages could not be read.');
+        return;
+      }
+      hiddenIds.push(item.dataset.message);
+      localStorage.setItem(hiddenSampleMessagesKey, JSON.stringify(hiddenIds));
+      item.remove();
+      messageDetail.className = 'message-empty';
+      messageDetail.innerHTML = '<span class="message-paper">◌</span><strong>Message deleted</strong><p>This message has been removed from your inbox.</p>';
+    });
   });
 });
 

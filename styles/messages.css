@@ -113,6 +113,19 @@
   border-radius: 8px;
 }
 
+.message-delete {
+  margin-top: 18px;
+  padding: 8px 11px;
+  border: 1px solid #f0c9c9;
+  border-radius: 5px;
+  background: #fff;
+  color: #a83e3e;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 .message-detail-head {
   display: flex;
   align-items: center;

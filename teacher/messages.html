@@ -21,7 +21,7 @@
         <a class="teacher-nav-link" href="scores.html" data-teacher-page="scores"><span class="teacher-nav-icon">✓</span><span>Input scores</span></a>
         <a class="teacher-nav-link selected" href="messages.html" data-teacher-page="messages"><span class="teacher-nav-icon">✉</span><span>Messages</span></a>
       </nav>
-      <div class="teacher-sidebar-bottom"><a class="teacher-nav-link" href="../student/index.html"><span class="teacher-nav-icon">♙</span><span>Student portal preview</span></a><a class="teacher-back-link" href="../index.html">← Change portal</a><div class="teacher-profile"><span class="teacher-avatar">T</span><span><strong>Teacher</strong><small>Staff workspace</small></span></div></div>
+      <div class="teacher-sidebar-bottom"><a class="teacher-nav-link" href="../student/index.html"><span class="teacher-nav-icon">♙</span><span>Student portal preview</span></a><a class="teacher-back-link" href="../index.html">← Change portal</a><div class="teacher-profile"><span class="teacher-avatar" data-teacher-initial>T</span><span><strong data-teacher-name>Teacher</strong><small data-teacher-subject>Staff workspace</small></span></div></div>
     </aside>
     <main class="teacher-main">
       <header class="teacher-topbar"><button class="teacher-menu-button" id="teacherMenuButton" type="button" aria-label="Open teacher navigation">☰</button><div class="teacher-page-heading"><p class="eyebrow">Teacher workspace</p><h1>Messages<span>.</span></h1></div></header>
@@ -29,12 +29,13 @@
         <div class="teacher-welcome-card"><div class="teacher-welcome-icon">✉</div><div><p class="panel-eyebrow">STAY CONNECTED</p><h2>Reach your students</h2><p>Send an update that will appear in the matching student’s Messages inbox.</p></div></div>
         <form class="teacher-compose-card" id="teacherMessageForm">
           <div class="teacher-card-heading"><div><p class="panel-eyebrow">NEW MESSAGE</p><h2>Compose a message</h2></div><span class="teacher-draft-badge">Student portal</span></div>
-          <label class="teacher-field">Your name<input name="sender" type="text" value="Teacher" required maxlength="60"></label>
+          <p class="teacher-message-sender">Sending as <strong data-teacher-name>Teacher</strong> · <span data-teacher-subject>Staff workspace</span></p>
           <label class="teacher-field">Student name<input name="recipient" type="text" placeholder="Enter the name shown in the student portal" required maxlength="60"></label>
           <label class="teacher-field">Subject<input name="subject" type="text" placeholder="e.g. Class update" required maxlength="100"></label>
           <label class="teacher-field">Message<textarea name="body" rows="6" placeholder="Write your message to the student..." required maxlength="2000"></textarea></label>
           <div class="teacher-form-footer"><p>The student name must match the name entered in the student portal.</p><button class="primary-button" type="submit"><span>➤</span> Send message</button></div>
         </form>
+        <article class="teacher-panel teacher-sent-messages"><div class="teacher-card-heading"><div><p class="panel-eyebrow">SENT MESSAGES</p><h2>Your messages</h2></div></div><div class="teacher-sent-message-list" id="teacherSentMessageList"><p class="teacher-empty-state">No messages sent yet.</p></div></article>
       </section>
     </main>
   </div>
