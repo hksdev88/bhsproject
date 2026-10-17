@@ -77,6 +77,13 @@ document.getElementById('switchStudentBtn')?.addEventListener('click', () => {
   location.reload();
 });
 
+document.getElementById('teacherSignOutBtn')?.addEventListener('click', () => {
+  localStorage.removeItem(teacherNameKey);
+  localStorage.removeItem(teacherSubjectKey);
+  localStorage.removeItem(teacherIdKey);
+  location.reload();
+});
+
 document.querySelectorAll('.nav-item[data-page]').forEach((item) => {
   const isCurrentPage = item.dataset.page === currentPage;
   item.classList.toggle('active', isCurrentPage);
